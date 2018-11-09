@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-import requests
+import urllib.request
 from re import match
 from io import BytesIO
 from lxml import etree
@@ -11,8 +11,9 @@ __NAME_DICT = {}
 
 
 def __parse_tree(url):
-    content = requests.get(url).content
-    return etree.parse(BytesIO(content), etree.HTMLParser())
+    contents = urllib.request.urlopen(url).read()
+
+    return etree.parse(BytesIO(contents), etree.HTMLParser())
 
 
 def now_all():
