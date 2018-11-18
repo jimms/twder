@@ -1,5 +1,7 @@
 # `twder` - 新台幣匯率擷取 (New Taiwan Dollar Exchange Rate)
 
+[![Build Status](https://travis-ci.com/jimms/twder.svg?branch=master)](https://travis-ci.com/jimms/twder)
+
 擷取台灣銀行新台幣匯率報價
 
 # Quick Start
