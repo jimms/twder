@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 
-import urllib.request
 from re import match
 from io import BytesIO
 from lxml import etree
+from six.moves.urllib import request
 
 __CURRENT_QUOTE_URL = 'http://rate.bot.com.tw/xrt?Lang=zh-TW'
 __HISTORY_QUOTE_URL_PATTERN = 'http://rate.bot.com.tw/xrt/quote/{range}/{currency}'
@@ -11,7 +11,7 @@ __NAME_DICT = {}
 
 
 def __parse_tree(url):
-    contents = urllib.request.urlopen(url).read()
+    contents = request.urlopen(url).read()
 
     return etree.parse(BytesIO(contents), etree.HTMLParser())
 
