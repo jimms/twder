@@ -3,6 +3,7 @@
 from re import match
 from io import BytesIO
 from lxml import etree
+from six import u
 from six.moves.urllib import request
 
 __CURRENT_QUOTE_URL = 'http://rate.bot.com.tw/xrt?Lang=zh-TW'
@@ -23,8 +24,8 @@ def now_all():
     """
     ret = {}
     tree = __parse_tree(__CURRENT_QUOTE_URL)
-    table = tree.xpath('//table[@title="牌告匯率"]')[0]
-    quote_time = tree.xpath('//span[@class="time"]/text()')[0]
+    table = tree.xpath(u'//table[@title="牌告匯率"]')[0]
+    quote_time = tree.xpath(u('//span[@class="time"]/text()'))[0]
 
     for row in table.xpath('tbody/tr'):
         tds = row.xpath('td')
@@ -73,7 +74,7 @@ def __parse_history_page(url, first_column_is_link=True):
     ret = []
 
     tree = __parse_tree(url)
-    table = tree.xpath('//table[@title="歷史本行營業時間牌告匯率"]')[0]
+    table = tree.xpath(u'//table[@title="歷史本行營業時間牌告匯率"]')[0]
     for row in table.xpath('tbody/tr'):
         if first_column_is_link:
             t = row.xpath('td[1]/a/text()')[0]
