@@ -7,7 +7,7 @@ from setuptools import setup
 setup(name='twder',
       version=twder.__version__,
       description='新台幣匯率擷取 (New Taiwan Dollar Exchange Rate)',
-      long_description=open('./README.md', 'r', encoding='utf8').read(),
+      long_description=open('./README.md', 'rb').read().decode('utf8'),
       author=twder.__author__,
       author_email='jimms.hsieh@gmail.com',
       url='https://github.com/jimms/twder',
