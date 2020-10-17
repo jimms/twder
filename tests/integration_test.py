@@ -31,24 +31,23 @@ class TestStringMethods(unittest.TestCase):
         twder.now_all()
 
     def test_now(self):
-        ret = twder.now('JPY')
+        ret = twder.now("JPY")
         self.assertIsInstance(ret, tuple)
         self.all_element_is_str(ret)
 
     def test_pastday(self):
-        ret = twder.past_day('JPY')
+        ret = twder.past_day("JPY")
         self.check_range_result(ret)
 
     def test_past_six_month(self):
-        ret = twder.past_six_month('JPY')
+        ret = twder.past_six_month("JPY")
         self.check_range_result(ret)
 
     def test_specify_month(self):
         now = datetime.datetime.now() - datetime.timedelta(days=31)
-        ret = twder.specify_month('JPY', now.year, now.month)
+        ret = twder.specify_month("JPY", now.year, now.month)
         self.check_range_result(ret)
 
 
-
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()
