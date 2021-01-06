@@ -35,10 +35,10 @@ def now_all():
         key = match(r".*\((\w+)\)", full_name).group(1)
         __NAME_DICT[key] = full_name
 
-        cash_buy = tds[1].text
-        cash_sell = tds[2].text
-        rate_buy = tds[3].text
-        rate_sell = tds[4].text
+        cash_buy = tds[1].text.strip()
+        cash_sell = tds[2].text.strip()
+        rate_buy = tds[3].text.strip()
+        rate_sell = tds[4].text.strip()
 
         ret[key] = (quote_time, cash_buy, cash_sell, rate_buy, rate_sell)
 
