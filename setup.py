@@ -15,7 +15,7 @@ setup(name='twder',
       packages=['twder'],
       license=twder.__license__,
       keywords="NTD TWD 匯率 exchange rate",
-      install_requires=['lxml', 'requests'],
+      install_requires=['lxml'],
       classifiers=[
           'Development Status :: 3 - Alpha',
           'Environment :: Console',
