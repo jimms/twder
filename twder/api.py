@@ -1,10 +1,7 @@
-# -*- coding: utf-8 -*-
-
 from re import match
 from io import BytesIO
 from lxml import etree
-from six import u
-from six.moves.urllib import request
+from urllib import request
 
 __CURRENT_QUOTE_URL = "http://rate.bot.com.tw/xrt?Lang=zh-TW"
 __HISTORY_QUOTE_URL_PATTERN = "http://rate.bot.com.tw/xrt/quote/{range}/{currency}"
@@ -25,7 +22,7 @@ def now_all():
     ret = {}
     tree = __parse_tree(__CURRENT_QUOTE_URL)
     table = tree.xpath(u'//table[@title="牌告匯率"]')[0]
-    quote_time = tree.xpath(u('//span[@class="time"]/text()'))[0]
+    quote_time = tree.xpath(u'//span[@class="time"]/text()')[0]
 
     for row in table.xpath("tbody/tr"):
         tds = row.xpath("td")
