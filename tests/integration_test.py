@@ -3,13 +3,12 @@
 import twder
 import unittest
 import datetime
-from six import string_types
 
 
 class TestStringMethods(unittest.TestCase):
     def all_element_is_str(self, container):
         for e in container:
-            self.assertIsInstance(e, string_types)
+            self.assertIsInstance(e, str)
 
     def check_range_result(self, range_result):
         self.assertIsInstance(range_result, list)
@@ -25,7 +24,7 @@ class TestStringMethods(unittest.TestCase):
         currencies = twder.currencies()
         for c in currencies:
             self.assertIn(c, ret)
-            self.assertIsInstance(ret[c], string_types)
+            self.assertIsInstance(ret[c], str)
 
     def test_now_all(self):
         twder.now_all()
