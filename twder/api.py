@@ -27,7 +27,8 @@ def now_all():
     for row in table.xpath("tbody/tr"):
         tds = row.xpath("td")
         full_name = (
-            tds[0].xpath('div/div[@class="visible-phone print_hide"]/text()')[0].strip()
+            tds[0].xpath(
+                'div/div[@class="visible-phone print_hide"]/text()')[0].strip()
         )
         key = match(r".*\((\w+)\)", full_name).group(1)
         __NAME_DICT[key] = full_name
@@ -36,6 +37,18 @@ def now_all():
         cash_sell = tds[2].text.strip()
         rate_buy = tds[3].text.strip()
         rate_sell = tds[4].text.strip()
+
+        # if column contains a form.
+        if rate_buy == '':
+            try:
+                rate_buy = tds[3].xpath('text()')[1].strip()
+            except RuntimeError:
+                pass
+        if rate_sell == '':
+            try:
+                rate_sell = tds[4].xpath('text()')[1].strip()
+            except RuntimeError:
+                pass
 
         ret[key] = (quote_time, cash_buy, cash_sell, rate_buy, rate_sell)
 
@@ -77,9 +90,11 @@ def __parse_history_page(url, first_column_is_link=True):
     for row in table.xpath("tbody/tr"):
         if first_column_is_link:
             t = row.xpath("td[1]/a/text()")[0]
-            name, cash_buy, cash_sell, spot_buy, spot_sell = row.xpath("td/text()")
+            name, cash_buy, cash_sell, spot_buy, spot_sell = row.xpath(
+                "td/text()")
         else:
-            t, name, cash_buy, cash_sell, spot_buy, spot_sell = row.xpath("td/text()")
+            t, name, cash_buy, cash_sell, spot_buy, spot_sell = row.xpath(
+                "td/text()")
         ret.append((t, cash_buy, cash_sell, spot_buy, spot_sell))
 
     return ret

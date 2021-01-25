@@ -6,6 +6,10 @@ import datetime
 
 
 class TestStringMethods(unittest.TestCase):
+    def _check_rate_value(self, v):
+        self.assertNotEqual(v, '')
+        self.assertEqual(v, v.strip())
+
     def all_element_is_str(self, container):
         for e in container:
             self.assertIsInstance(e, str)
@@ -27,7 +31,13 @@ class TestStringMethods(unittest.TestCase):
             self.assertIsInstance(ret[c], str)
 
     def test_now_all(self):
-        twder.now_all()
+        for k, v in twder.now_all().items():
+            self.assertIsInstance(k, str)
+            self.assertIsInstance(v, tuple)
+            self._check_rate_value(v[1])
+            self._check_rate_value(v[2])
+            self._check_rate_value(v[3])
+            self._check_rate_value(v[4])
 
     def test_now(self):
         ret = twder.now("JPY")
