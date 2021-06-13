@@ -3,8 +3,8 @@ from io import BytesIO
 from lxml import etree
 from urllib import request
 
-__CURRENT_QUOTE_URL = "http://rate.bot.com.tw/xrt?Lang=zh-TW"
-__HISTORY_QUOTE_URL_PATTERN = "http://rate.bot.com.tw/xrt/quote/{range}/{currency}"
+__CURRENT_QUOTE_URL = "https://rate.bot.com.tw/xrt?Lang=zh-TW"
+__HISTORY_QUOTE_URL_PATTERN = "https://rate.bot.com.tw/xrt/quote/{range}/{currency}"
 __NAME_DICT = {}
 
 
