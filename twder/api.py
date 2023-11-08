@@ -112,6 +112,17 @@ def past_day(currency):
     )
 
 
+def past_three_month(currency):
+    """取得最近三個月的報價(包含貨幣名稱)
+
+    :param str currency: 貨幣代號
+    :rtype: list
+    """
+    return __parse_history_page(
+        __HISTORY_QUOTE_URL_PATTERN.format(currency=currency, range="ltm")
+    )
+
+
 def past_six_month(currency):
     """取得最近六個月的報價(包含貨幣名稱)
 
